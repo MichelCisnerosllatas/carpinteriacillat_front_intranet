@@ -1,0 +1,38 @@
+/* src/shared/ui/sweetalert.css */
+
+:root { --swal-accent: var(--accent, #3b82f6); }
+
+/* caja y textos */
+.swal-app-popup{ background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:1rem; }
+.swal-app-title{ color:var(--text); font-weight:600; }
+.swal-app-html{ color:var(--muted); font-size:.95rem; }
+
+/* botones */
+.swal-app-actions{ gap:.5rem; }
+.swal-app-confirm{
+    background:var(--swal-accent); color:#fff; border-radius:.75rem; padding:.55rem .9rem; font-weight:600; border:0;
+}
+.swal-app-cancel{
+    background:transparent; color:var(--text); border:1px solid var(--border); border-radius:.75rem; padding:.55rem .9rem; font-weight:600;
+}
+.swal-app-deny{
+    background:#ef4444; color:#fff; border-radius:.75rem; padding:.55rem .9rem; font-weight:600; border:0;
+}
+
+/* inputs */
+.swal-app-input{
+    background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:.5rem; padding:.5rem .6rem;
+}
+.swal-app-confirm:focus,
+.swal-app-cancel:focus,
+.swal-app-deny:focus,
+.swal-app-input:focus{
+    box-shadow:0 0 0 4px color-mix(in oklab, var(--swal-accent), transparent 80%);
+    outline: none;
+}
+
+/* Fondo más oscuro para el overlay */
+.swal2-container.swal2-backdrop-show {
+    background: rgba(0, 0, 0, 0.6) !important; /* antes 0.4 aprox */
+    backdrop-filter: blur(2px); /* opcional: añade un efecto sutil */
+}

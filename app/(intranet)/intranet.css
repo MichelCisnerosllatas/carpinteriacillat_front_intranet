@@ -1,0 +1,324 @@
+/* app/(intranet)/intranet.css */
+
+/* =========================================================
+   SCOPE DEL INTRANET + ALIAS DE TOKENS (desde globals.css)
+   ========================================================= */
+[data-intranet]{
+    /* Acento solo intranet (usando tu primary del tema global) */
+    --accent: hsl(var(--primary));
+
+    /* Alias listos (evitas repetir hsl(var(...)) en todo) */
+    --bgc: hsl(var(--bg));
+    --surfacec: hsl(var(--surface));
+    --surface2c: hsl(var(--surface-2));
+    --fgc: hsl(var(--fg));
+    --mutedc: hsl(var(--muted-fg));
+    --borderc: hsl(var(--border));
+    --primaryc: hsl(var(--primary));
+    --primaryfgc: hsl(var(--primary-fg));
+}
+
+/* =========================================================
+   SIDEBAR (DESKTOP)
+   ========================================================= */
+[data-intranet] .sidebar{
+    position: fixed;
+    inset: 0 auto 0 0;
+    height: 100vh;
+    width: 16rem;
+    z-index: 120;
+
+    transition: width .25s ease, transform .25s ease;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /*background: var(--bgc);*/
+    /*border-right: 1px solid var(--borderc);*/
+}
+
+[data-intranet] .sidebar nav{ overflow-x: hidden; }
+
+[data-intranet] .sidebar .label{
+    transition: opacity .2s, transform .2s;
+    white-space: nowrap;
+}
+
+/* Links */
+[data-intranet] .sidebar .navlink{
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .55rem .7rem;
+    border-radius: .85rem;
+
+    color: var(--mutedc);
+    text-decoration: none;
+
+    transition: background .15s ease, color .15s ease, transform .05s ease, border-color .15s ease;
+}
+
+[data-intranet] .sidebar .navlink:hover{
+    background: color-mix(in oklab, var(--surfacec), transparent 40%);
+    color: var(--fgc);
+}
+
+[data-intranet] .sidebar .navlink:active{
+    transform: scale(.99);
+}
+
+[data-intranet] .sidebar .navlink .icon{
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    color: currentColor;
+}
+
+/* Activo */
+[data-intranet] .sidebar .navlink.active{
+    background: color-mix(in oklab, var(--accent), transparent 88%);
+    color: var(--accent);
+    border: 1px solid color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+[data-intranet] .header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 16rem;
+    height: 56px;
+    z-index: 50;
+
+    backdrop-filter: blur(10px);
+    /*background: color-mix(in oklab, var(--surfacec), transparent 18%);*/
+    /*border-bottom: 1px solid var(--borderc);*/
+
+    transition: left .25s ease;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+[data-intranet] .main{
+    margin-left: 16rem;
+    padding-top: 56px;
+    transition: margin-left .25s ease;
+}
+
+/* =========================================================
+   COLAPSADO SOLO DESKTOP (data-collapsed)
+   ========================================================= */
+@media (min-width:1024px){
+    [data-intranet][data-collapsed="true"] .sidebar{ width: 4rem; }
+    [data-intranet][data-collapsed="true"] .header{ left: 4rem; }
+    [data-intranet][data-collapsed="true"] .main{ margin-left: 4rem; }
+
+    /* Oculta labels dentro del sidebar colapsado */
+    [data-intranet][data-collapsed="true"] .sidebar .label{
+        display:none !important;
+    }
+
+    /* Mejor “look”: centra iconos cuando está colapsado */
+    [data-intranet][data-collapsed="true"] .sidebar .navlink{
+        justify-content: center;
+        padding-left: .6rem;
+        padding-right: .6rem;
+    }
+
+    /* Evita que el icono se pegue a la izquierda */
+    [data-intranet][data-collapsed="true"] .sidebar .navlink .icon{
+        margin: 0;
+    }
+
+    /* Oculta títulos de secciones cuando está colapsado */
+    [data-intranet][data-collapsed="true"] .sidebar nav > div > .label{
+        display:none !important;
+    }
+}
+
+/* =========================================================
+   OVERLAY (MOBILE)
+   ========================================================= */
+[data-intranet] .overlay{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .2s;
+}
+[data-intranet] .overlay.show{ opacity: 1; visibility: visible; }
+
+/* =========================================================
+   SCROLLBAR (solo intranet)
+   ========================================================= */
+/* Firefox */
+[data-intranet] .sidebar{
+    scrollbar-width: thin;
+    scrollbar-color: var(--borderc) transparent;
+}
+/* WebKit */
+[data-intranet] .sidebar::-webkit-scrollbar{ width: 10px; }
+[data-intranet] .sidebar::-webkit-scrollbar-track{ background: transparent; }
+[data-intranet] .sidebar::-webkit-scrollbar-thumb{
+    background: color-mix(in oklab, var(--borderc), #000 20%);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+.dark [data-intranet] .sidebar::-webkit-scrollbar-thumb{
+    background: color-mix(in oklab, var(--borderc), #fff 20%);
+}
+
+/* =========================================================
+   SELECT NATIVO (limitado)
+   ========================================================= */
+[data-intranet] select{
+    background: var(--surface2c);
+    color: var(--fgc);
+    border: 1px solid var(--borderc);
+    border-radius: 12px;
+    padding: .65rem .75rem;
+    outline: none;
+}
+
+/* =========================================================
+   MOBILE (<1024px)
+   - sidebar overlay
+   - ignora colapsado en móvil (porque se vuelve drawer)
+   ========================================================= */
+@media (max-width:1023px){
+    [data-intranet] .sidebar{ transform: translateX(-100%); width: 16rem; }
+    [data-intranet] .sidebar.show{ transform: translateX(0); }
+
+    [data-intranet] .header{ left: 0 !important; }
+    [data-intranet] .main{ margin-left: 0 !important; }
+
+    /* ignora data-collapsed en móvil */
+    [data-intranet][data-collapsed="true"] .sidebar{ width: 16rem; }
+    [data-intranet][data-collapsed="true"] .sidebar .label{ display: initial !important; }
+    [data-intranet][data-collapsed="true"] .header{ left: 0 !important; }
+    [data-intranet][data-collapsed="true"] .main{ margin-left: 0 !important; }
+}
+
+/* =========================================================
+   PRELOAD: quita transiciones para evitar “parpadeo”
+   (si lo sigues usando)
+   ========================================================= */
+html.intra-preload [data-intranet] .sidebar,
+html.intra-preload [data-intranet] .header,
+html.intra-preload [data-intranet] .main{
+    transition: none !important;
+}
+
+/* =========================================================
+   POPOVER (submenu cuando sidebar está colapsado)
+   - IMPORTANTE: aquí la label DEBE VERSE (aunque el sidebar oculte labels)
+   ========================================================= */
+.intra-popover .navlink .label{
+    display: inline !important;
+}
+[data-intranet][data-collapsed="true"] .intra-popover .label{
+    display: inline !important;
+}
+
+/* ===== Popover (submenu cuando sidebar está colapsado) ===== */
+.intra-popover-overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: transparent; /* no oscurece */
+}
+
+.intra-popover{
+    min-width: 240px;
+    max-width: 340px;
+    border-radius: 14px;
+    border: 1px solid var(--borderc);
+    background: var(--surfacec);
+    color: var(--fgc);
+    box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    overflow: hidden;
+}
+
+.intra-popover-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--borderc);
+}
+
+.intra-popover-close{
+    display:grid;
+    place-items:center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--mutedc);
+    cursor:pointer;
+}
+.intra-popover-close:hover{
+    background: var(--surface2c);
+    color: var(--fgc);
+    border-color: var(--borderc);
+}
+
+.intra-popover-list{
+    padding: 8px;
+    display:flex;
+    flex-direction:column;
+    gap: 6px;
+}
+
+.intra-popover-item{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    padding: 10px 10px;
+    border-radius: 12px;
+    color: var(--mutedc);
+    text-decoration:none;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.intra-popover-item .icon{
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    color: currentColor;
+}
+.intra-popover-item:hover{
+    background: var(--surface2c);
+    color: var(--fgc);
+}
+.intra-popover-item.active{
+    background: color-mix(in oklab, var(--accent), transparent 88%);
+    color: var(--accent);
+    border: 1px solid color-mix(in oklab, var(--accent), transparent 70%);
+}
+
+/* Flecha */
+.intra-popover-arrow{
+    position:absolute;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid var(--surfacec);
+    filter: drop-shadow(-1px 0 0 var(--borderc));
+}
+
+/* IMPORTANTE: dentro del popover el texto SI debe verse */
+.intra-popover .label{
+    display: inline !important;
+}
+
