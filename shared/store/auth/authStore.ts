@@ -7,9 +7,10 @@ import { persist } from 'zustand/middleware';
 import Cookies from 'js-cookie';
 import {resetAllStores} from "@/shared/utils/resetAllStore";
 import {toast} from "react-hot-toast";
+import {AuthDataEntitys} from "@/entity/auth/register/RegisterEntity";
 
 type AuthStore = {
-    usuario: AuthResponseEntities | null;
+    usuario: AuthDataEntitys | null;
     loadinauth: boolean;
     estaLogueado: boolean;
     success: boolean | null;
@@ -65,8 +66,8 @@ export const useAuthStore = create<AuthStore>()(
                     Cookies.set(
                         'user',
                         JSON.stringify({
-                            id: datosUsuario?.data?.id,
-                            idrol: datosUsuario?.data?.role_id,
+                            id: datosUsuario?.user?.id,
+                            role_id: datosUsuario?.user?.role?.id,
                             // rol: datosUsuario.groups[0].name,
                         }),
                         {
@@ -90,7 +91,7 @@ export const useAuthStore = create<AuthStore>()(
                     //     showConfirmButton: false,
                     // }).then(r => {});
 
-                    toast.success(`Bienvenido ${datosUsuario?.data?.name}`)
+                    toast.success(`Bienvenido ${datosUsuario?.user?.name}`)
                     return true;
                 }
                 catch (ex: any) {

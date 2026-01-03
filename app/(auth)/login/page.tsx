@@ -8,9 +8,7 @@ import Image from 'next/image';
 
 export default function LoginPage() {
     return (
-        <div
-            className=" min-h-screen flex items-center bg-cover bg-center px-8 py-12"
-        >
+        <div className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-bg px-8 py-12">
             <div className="max-w-4xl w-full bg-transparent rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2 backdrop-blur-sm">
                 {/* Left: Branding */}
                 <div className="p-8 bg-[linear-gradient(180deg,#0b8043,rgba(11,128,67,0.95))] text-white flex flex-col justify-between">
@@ -42,18 +40,17 @@ export default function LoginPage() {
                 </div>
 
                 {/* Right: Form */}
-                <div className="p-8 md:p-10">
+                <div className="p-8 md:p-10 bg-surface-2">
                     <div className="mb-6">
                         <h2 className="text-2xl font-semibold text-white">Iniciar sesión</h2>
                         <p className="text-sm text-gray-500">Usa tu correo institucional para ingresar</p>
                     </div>
 
                     <LoginForm />
-{/* 
                     <div className="mt-6 text-sm text-center text-white">
                         ¿No tienes cuenta?{' '}
                         <Link href="/register" className="text-green-600 font-medium hover:underline">Crear una cuenta</Link>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

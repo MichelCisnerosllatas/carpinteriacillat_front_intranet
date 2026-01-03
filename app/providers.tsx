@@ -1,3 +1,4 @@
+//app/providers.tsx
 "use client";
 import { ThemeProvider } from "next-themes";
 import {BrandThemeSync} from "@/widget/theme/BrandThemeSync";
@@ -10,7 +11,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             enableSystem
             disableTransitionOnChange
         >
-            <BrandThemeSync/>
+            {/*<BrandThemeSync/>*/}
             {children}
         </ThemeProvider>
     );

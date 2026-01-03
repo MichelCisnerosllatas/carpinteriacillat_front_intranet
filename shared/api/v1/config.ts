@@ -12,7 +12,7 @@ export const API_CONFIG = {
         auth: {
             login: '/intranet/auth/login',
             logout: '/intranet/auth/logout/',
-            register: '/intranet/auth/register/',
+            register: '/intranet/auth/register',
             verify: '/UsuarioController.php',
             forgotpassword: '/auth/users/recovery-user/',
         }

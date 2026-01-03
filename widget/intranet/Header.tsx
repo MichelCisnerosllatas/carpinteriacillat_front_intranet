@@ -13,25 +13,7 @@ import { toast } from "react-hot-toast"
 
 const TITLE: Record<string,string> = {
     '/dashboard':'Dashboard',
-    '/horarioacademico':'Horario Acádemico',
-    '/disponibilidadhoraria':'Disponibilidad Horaria',
-    '/proyectos':'Proyectos',
-    '/detalleperiodo':'Detalle del Período',
-    '/horarioacademico/tipohorario/automatico' : "Configurar automatico",
-    '/configuracion/facultad':'Facultad',
-    '/horarioacademico/configuracioncurso': 'Configuracion del Curso',
-    '/configuracion/tipos_periodo':'Tipos de Período',
-    '/reportes':'Reportes',
-    '/recursos':'Recursos',
-    '/ayuda':'Ayuda',
-    '/perfil':'Mi Perfil',
-    '/configuracion':'Configuración',
-    '/configuracion/aula':'Aula',
-    '/configuracion/docente' : 'Docente',
-    '/configuracion/usuario' : 'Usuario',
-    '/configuracion/curso' : 'Curso',
-    '/configuracion/user_groups': 'Rol',
-    '/configuracion/tema' : 'Tema',
+    '/user':'Usuario',
 }
 
 export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
@@ -73,7 +55,7 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
     const iniciales = nombre.split(' ').map(p => p[0]).slice(0, 2).join('').toUpperCase()
 
     return (
-        <header className="header px-4 flex items-center justify-between bg-surface text-fg border-b border-border">
+        <header className="header px-4 flex items-center justify-between bg-bg text-fg border-b border-border">
             <div className="flex items-center gap-3">
                 <button
                     className="cursor-pointer p-2 rounded-lg hover-fill"
@@ -127,8 +109,8 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
                         <Link href="/perfil" className="block px-3 py-2 rounded-lg hover-fill" role="menuitem" onClick={() => setOpen(false)}>
                             Mi Perfil
                         </Link>
-                        <Link href="/configuracion" className="block px-3 py-2 rounded-lg hover-fill" role="menuitem" onClick={() => setOpen(false)}>
-                            Configuración
+                        <Link href="/theme" className="block px-3 py-2 rounded-lg hover-fill" role="menuitem" onClick={() => setOpen(false)}>
+                            Cambiar Tema
                         </Link>
                         <button
                             onClick={() => { setOpen(false); handleLogout() }}

@@ -3,6 +3,9 @@
 
 /* ===== LIGHT ===== */
 :root {
+  /* Base */
+  --app-bg: 12 80% 97%;   /* naranja MUY suave */
+
   --bg: 0 0% 98%;
   --surface: 0 0% 100%;
   --surface-2: 0 0% 96%;
@@ -11,12 +14,30 @@
   --muted-fg: 215 16% 47%;
   --border: 214 32% 91%;
 
-  --primary: 221 83% 53%;
-  --primary-fg: 210 40% 98%;
+  /* ===== Marca (CILLAT) ===== */
+  --brand-yellow: 48 99% 53%;
+  --brand-orange: 12 98% 57%;
+  --brand-red: 7 99% 50%;
+  --brand-ink: 210 8% 14%;
+
+  /* Semánticos */
+  --primary: var(--brand-orange);
+  --primary-fg: 0 0% 100%;
+
+  --accent: var(--brand-yellow);
+  --accent-fg: 210 8% 14%;
+
+  --danger: var(--brand-red);
+  --danger-fg: 0 0% 100%;
+
+  /* IMPORTANTE: ayuda a inputs, scrollbars, etc */
+  color-scheme: light;
 }
 
-/* ===== DARK (negro real) ===== */
+/* ===== DARK ===== */
 .dark {
+  --app-bg: 12 40% 6%;    /* naranja MUY oscuro, casi negro */
+
   --bg: 0 0% 0%;
   --surface: 0 0% 8%;
   --surface-2: 0 0% 14%;
@@ -25,16 +46,36 @@
   --muted-fg: 0 0% 70%;
   --border: 0 0% 18%;
 
-  --primary: 217 91% 60%;
+  --brand-yellow: 48 99% 58%;
+  --brand-orange: 12 98% 62%;
+  --brand-red: 7 99% 60%;
+  --brand-ink: 0 0% 96%;
+
+  --primary: var(--brand-orange);
   --primary-fg: 0 0% 0%;
+
+  --accent: var(--brand-yellow);
+  --accent-fg: 0 0% 0%;
+
+  --danger: var(--brand-red);
+  --danger-fg: 0 0% 0%;
+
+  color-scheme: dark;
 }
 
-html,
-body {
-  height: 100%;
+/* ✅ ESTO ES LO QUE TE FALTABA: fondo real global */
+html, body {
+  min-height: 100%;
+  background: hsl(var(--bg));
+  color: hsl(var(--fg));
 }
 
-/* ====== Utility classes basadas en tokens (sin tailwind.config) ====== */
+/* ✅ evita flashes por transición al cargar */
+html.preload * {
+  transition: none !important;
+}
+
+/* ====== Utilities ====== */
 .bg-bg { background-color: hsl(var(--bg)); }
 .bg-surface { background-color: hsl(var(--surface)); }
 .bg-surface-2 { background-color: hsl(var(--surface-2)); }
@@ -45,37 +86,112 @@ body {
 .border-border { border-color: hsl(var(--border)); }
 
 .bg-primary { background-color: hsl(var(--primary)); }
+.text-primary { color: hsl(var(--primary)); }
 .text-primary-fg { color: hsl(var(--primary-fg)); }
 
+.bg-accent { background-color: hsl(var(--accent)); }
+.text-accent-fg { color: hsl(var(--accent-fg)); }
 
+.bg-danger { background-color: hsl(var(--danger)); }
+.text-danger-fg { color: hsl(var(--danger-fg)); }
 
+.bg-brand-yellow { background-color: hsl(var(--brand-yellow)); }
+.bg-brand-orange { background-color: hsl(var(--brand-orange)); }
+.bg-brand-red { background-color: hsl(var(--brand-red)); }
+.text-brand-ink { color: hsl(var(--brand-ink)); }
 
+.text-danger { color: hsl(var(--danger)); }
+.border-danger { border-color: hsl(var(--danger)); }
+.border-text-focus-yellow { border-color: hsl(var(--brand-yellow)); }
 
-
-
+/*!* app/globals.css *!*/
 /*@import "tailwindcss";*/
 
+/*!* ===== LIGHT ===== *!*/
 /*:root {*/
-/*  --background: #ffffff;*/
-/*  --foreground: #171717;*/
+/*  !* Base *!*/
+/*  --bg: 0 0% 98%;*/
+/*  --surface: 0 0% 100%;*/
+/*  --surface-2: 0 0% 96%;*/
+
+/*  --fg: 222 47% 11%;*/
+/*  --muted-fg: 215 16% 47%;*/
+/*  --border: 214 32% 91%;*/
+
+/*  !* ===== Marca (CILLAT) ===== *!*/
+/*  --brand-yellow: 48 99% 53%;*/
+/*  --brand-orange: 12 98% 57%;*/
+/*  --brand-red: 7 99% 50%;*/
+/*  --brand-ink: 210 8% 14%;*/
+
+/*  !* Semánticos (lo que usarás en UI) *!*/
+/*  --primary: var(--brand-orange);*/
+/*  --primary-fg: 0 0% 100%;*/
+
+/*  --accent: var(--brand-yellow);*/
+/*  --accent-fg: 210 8% 14%;*/
+
+/*  --danger: var(--brand-red);*/
+/*  --danger-fg: 0 0% 100%;*/
 /*}*/
 
-/*@theme inline {*/
-/*  --color-background: var(--background);*/
-/*  --color-foreground: var(--foreground);*/
-/*  --font-sans: var(--font-geist-sans);*/
-/*  --font-mono: var(--font-geist-mono);*/
+/*!* ===== DARK (negro real) ===== *!*/
+/*.dark {*/
+/*  !* Base *!*/
+/*  --bg: 0 0% 0%;*/
+/*  --surface: 0 0% 8%;*/
+/*  --surface-2: 0 0% 14%;*/
+
+/*  --fg: 0 0% 96%;*/
+/*  --muted-fg: 0 0% 70%;*/
+/*  --border: 0 0% 18%;*/
+
+/*  !* Marca (ligeramente más “viva” para dark) *!*/
+/*  --brand-yellow: 48 99% 58%;*/
+/*  --brand-orange: 12 98% 62%;*/
+/*  --brand-red: 7 99% 60%;*/
+/*  --brand-ink: 0 0% 96%;*/
+
+/*  !* Semánticos *!*/
+/*  --primary: var(--brand-orange);*/
+/*  --primary-fg: 0 0% 0%;*/
+
+/*  --accent: var(--brand-yellow);*/
+/*  --accent-fg: 0 0% 0%;*/
+
+/*  --danger: var(--brand-red);*/
+/*  --danger-fg: 0 0% 0%;*/
 /*}*/
 
-/*@media (prefers-color-scheme: dark) {*/
-/*  :root {*/
-/*    --background: #0a0a0a;*/
-/*    --foreground: #ededed;*/
-/*  }*/
-/*}*/
+/*!* ====== Utility classes basadas en tokens ====== *!*/
+/*.bg-bg { background-color: hsl(var(--bg)); }*/
+/*.bg-surface { background-color: hsl(var(--surface)); }*/
+/*.bg-surface-2 { background-color: hsl(var(--surface-2)); }*/
 
-/*body {*/
-/*  background: var(--background);*/
-/*  color: var(--foreground);*/
-/*  font-family: Arial, Helvetica, sans-serif;*/
-/*}*/
+/*.text-fg { color: hsl(var(--fg)); }*/
+/*.text-muted-fg { color: hsl(var(--muted-fg)); }*/
+
+/*.border-border { border-color: hsl(var(--border)); }*/
+
+/*!* Primary *!*/
+/*.bg-primary { background-color: hsl(var(--primary)); }*/
+/*.text-primary { color: hsl(var(--primary)); }*/
+/*.text-primary-fg { color: hsl(var(--primary-fg)); }*/
+
+/*!* Accent *!*/
+/*.bg-accent { background-color: hsl(var(--accent)); }*/
+/*.text-accent-fg { color: hsl(var(--accent-fg)); }*/
+
+/*!* Danger *!*/
+/*.bg-danger { background-color: hsl(var(--danger)); }*/
+/*.text-danger-fg { color: hsl(var(--danger-fg)); }*/
+
+/*!* Marca directa (por si quieres usar tonos exactos) *!*/
+/*.bg-brand-yellow { background-color: hsl(var(--brand-yellow)); }*/
+/*.bg-brand-orange { background-color: hsl(var(--brand-orange)); }*/
+/*.bg-brand-red { background-color: hsl(var(--brand-red)); }*/
+/*.text-brand-ink { color: hsl(var(--brand-ink)); }*/
+/*!* Semánticos *!*/
+/*.text-danger { color: hsl(var(--danger)); }*/
+/*.border-danger { border-color: hsl(var(--danger)); }*/
+/*.border-text-focus-yellow { border-color: hsl(var(--brand-yellow)); }*/

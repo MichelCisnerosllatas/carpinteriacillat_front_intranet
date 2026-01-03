@@ -22,7 +22,7 @@ export const useRolStore = create<RolState>()(
                 if (cookie) {
                     try {
                         const user = JSON.parse(cookie)
-                        const newRol = Number(user.idrol)
+                        const newRol = Number(user.role_id)
                         set((state) => {
                             // solo cambia si es distinto (para evitar re-render inútil)
                             if (state.idRol !== newRol) return { idRol: newRol }

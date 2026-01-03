@@ -10,7 +10,7 @@ const roleAccess: Record<string, string[]> = {
         "/"
     ],
 
-    "4": [
+    "2": [
         //docentes
         "/disponibilidadhoraria"
     ],
@@ -30,6 +30,10 @@ export async function middleware(req: NextRequest) {
     const userCookie = req.cookies.get("user")?.value;
     const user = userCookie ? JSON.parse(userCookie) : null;
 
+    // console.log("Token en middleware:", token);
+    // console.log("userCookie en middleware:", userCookie);
+    // console.log("user en middleware:", user);
+
     // ✅ Permitir acceso a rutas públicas
     const isPublic = publicRoutes.some((route) => pathname.startsWith(route));
     if (isPublic) return NextResponse.next();
@@ -39,7 +43,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL("/login", req.url));
     }
 
-    const userRole = String(user?.idrol || ""); // fuerza a string
+    const userRole = String(user?.role_id || ""); // fuerza a string
     const allowedRoutes = roleAccess[userRole] || [];
 
     // ✅ Si es admin (1), acceso total
@@ -51,7 +55,7 @@ export async function middleware(req: NextRequest) {
     const hasAccess = allowedRoutes.some((route) => pathname.startsWith(route));
 
     if (!hasAccess) {
-        console.warn(`🚫 Acceso denegado a ${pathname} para rol: ${userRole}`);
+        // console.warn(`🚫 Acceso denegado a ${pathname} para rol: ${userRole}`);
         return NextResponse.redirect(new URL("/sinpermiso", req.url));
     }
 

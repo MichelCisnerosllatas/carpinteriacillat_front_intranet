@@ -1,3 +1,4 @@
+//shared/store/ui.store.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -11,7 +12,7 @@ type UIState = {
 export const useUIStore = create<UIState>()(
     persist(
         (set) => ({
-            brand: "blue",
+            brand: "amber",
             setBrand: (brand) => set({ brand }),
         }),
         { name: "ui-preferences" }

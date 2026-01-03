@@ -24,7 +24,7 @@ export function LoginForm() {
             if (cookie) {
                 try {
                     const user = JSON.parse(cookie);
-                    idrol = user.idrol;
+                    idrol = user.role_id;
                 } catch {
                 }
             }

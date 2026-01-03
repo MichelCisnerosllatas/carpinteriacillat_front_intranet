@@ -2,7 +2,7 @@
 // base.ts - USANDO la configuración de config.ts
 // ============================================
 
-// Archivo: src/shared/api/base.ts
+// Archivo: /shared/api/base.ts
 
 import axios, {AxiosInstance, AxiosResponse} from 'axios';
 import Cookies from 'js-cookie';
@@ -53,20 +53,6 @@ class ClienteAPI {
                 // 👇 Mantenemos el objeto original del error (NO lo convertimos en new Error)
                 return Promise.reject(error);
             }
-            // (error) => {
-            //     if (!error.response) {
-            //         return Promise.reject(
-            //             new Error(error.message || 'Error de red o CORS.')
-            //         );
-            //     }
-            //
-            //     const mensaje =
-            //         error.response.data?.result?.message ||
-            //         error.response.data?.message ||
-            //         error.message || 'Error desconocido.';
-            //
-            //     return Promise.reject(new Error(mensaje));
-            // }
         );
     }
 
@@ -124,6 +110,16 @@ class ClienteAPI {
 
         return respuesta;
     }
+
+    async enviarFormData<T>(url: string, formData: FormData): Promise<AxiosResponse<T>> {
+        return this.cliente.post<T>(url, formData);
+    }
+    // async enviarFormData<T>(url: string, formData: FormData): Promise<T> {
+    //     // ✅ NO seteamos Content-Type; axios lo hace con boundary
+    //     const respuesta = await this.cliente.post<T>(url, formData);
+    //     return respuesta as T;
+    // }
+
 
 
     // ============================================
