@@ -62,7 +62,7 @@ export const useAuthStore = create<AuthStore>()(
                     });
 
 
-                    // Cookies.set('user', JSON.stringify(datosUsuario), { expires: 7, secure: true })
+                    // Cookies.set('userjoin', JSON.stringify(datosUsuario), { expires: 7, secure: true })
                     Cookies.set(
                         'user',
                         JSON.stringify({

@@ -28,7 +28,7 @@ class ClienteAPI {
                 const token = Cookies.get('token');
                 if (token) {
                     // config.headers.Authorization = `Bearer ${token}`;
-                    config.headers.Authorization = `Token ${token}`;
+                    config.headers.Authorization = `Bearer ${token}`;
                 }
 
                 return config;
@@ -135,13 +135,11 @@ class ClienteAPI {
         return respuesta;
     }
 
-    async obtener1<T>(url: string, parametros?: Record<string, string | number>): Promise<AxiosResponse<T>> {
-        const respuesta = await this.cliente.get<T>(url, {
-            params: parametros,
-        });
-
+    async obtener1<T>(url: string, parametros?: Partial<Record<string, string | number>>): Promise<AxiosResponse<T>> {
+        const respuesta = await this.cliente.get<T>(url, { params: parametros });
         return respuesta;
     }
+
 
     // ============================================
     // MÉTODO 5: actualizar (PUT con formulario)

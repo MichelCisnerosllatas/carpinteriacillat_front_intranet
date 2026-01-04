@@ -32,7 +32,7 @@ export async function middleware(req: NextRequest) {
 
     // console.log("Token en middleware:", token);
     // console.log("userCookie en middleware:", userCookie);
-    // console.log("user en middleware:", user);
+    // console.log("userjoin en middleware:", userjoin);
 
     // ✅ Permitir acceso a rutas públicas
     const isPublic = publicRoutes.some((route) => pathname.startsWith(route));
@@ -85,10 +85,10 @@ export const config = {
 // export async function middleware(req: NextRequest) {
 //     const { pathname } = req.nextUrl
 //     const token = req.cookies.get('token')?.value
-//     const userCookie = req.cookies.get('user')?.value
-//     const user = userCookie ? JSON.parse(userCookie) : null
+//     const userCookie = req.cookies.get('userjoin')?.value
+//     const userjoin = userCookie ? JSON.parse(userCookie) : null
 //
-//     // if (user?.rol !== 'admin') {
+//     // if (userjoin?.rol !== 'admin') {
 //     //     return NextResponse.redirect(new URL('/sin-permiso', req.url))
 //     // }
 //
@@ -100,13 +100,13 @@ export const config = {
 //     const isPublic = publicRoutes.some((route) => pathname.startsWith(route))
 //
 //     // Si NO hay token ni usuario y no está en ruta pública → redirigir a login
-//     if ((!token || !user) && !isPublic) {
+//     if ((!token || !userjoin) && !isPublic) {
 //         console.log('No hay token o usuario, redirigiendo a /login')
 //         return NextResponse.redirect(new URL('/login', req.url))
 //     }
 //
 //     // Si hay token y usuario y está en ruta pública → redirigir al dashboard
-//     if (token && user && isPublic) {
+//     if (token && userjoin && isPublic) {
 //         console.log('✅ Tiene token y usuario, redirigiendo a /dashboard')
 //         return NextResponse.redirect(new URL('/dashboard', req.url))
 //     }
@@ -123,7 +123,7 @@ export const config = {
 //     //             console.log('⛔ Token inválido o expirado, redirigiendo a /login')
 //     //             const response = NextResponse.redirect(new URL('/login', req.url))
 //     //             response.cookies.delete('token')
-//     //             response.cookies.delete('user')
+//     //             response.cookies.delete('userjoin')
 //     //             return response
 //     //         }
 //     //     } catch (error) {

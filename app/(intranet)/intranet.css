@@ -7,6 +7,9 @@
     /* Acento solo intranet (usando tu primary del tema global) */
     --accent: hsl(var(--primary));
 
+    /* en lugar de hsl(var(--primary)) */
+    --accent2: var(--primary); /* ✅ solo el valor HSL */
+
     /* Alias listos (evitas repetir hsl(var(...)) en todo) */
     --bgc: hsl(var(--bg));
     --surfacec: hsl(var(--surface));

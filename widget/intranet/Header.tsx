@@ -24,20 +24,43 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
     const ref = React.useRef<HTMLDivElement>(null)
     const { cerrarSesion, usuario } = useAuthStore()
 
+    // const handleLogout = async () => {
+    //     const result = await swal.confirm({
+    //         title: '¿Cerrar sesión?',
+    //         confirmText: 'Sí',
+    //         cancelText: 'No',
+    //         reverseButtons: true,
+    //     })
+    //
+    //     if (result.isConfirmed) {
+    //         router.push('/login')
+    //         cerrarSesion()
+    //         toast.success("Sesión cerrada")
+    //     }
+    // }
+
     const handleLogout = async () => {
-        const result = await swal.confirm({
+        const res = await swal.confirmAsync({
             title: '¿Cerrar sesión?',
             confirmText: 'Sí',
             cancelText: 'No',
-            reverseButtons: true,
+            loadingText: 'Cerrando...',
+
+            onConfirm: async ({ update }) => {
+                update({ text: 'Cerrando sesión, espera un momento...' })
+
+                await cerrarSesion() // ✅ tu request al backend
+
+                return true
+            },
         })
 
-        if (result.isConfirmed) {
+        if (res.ok) {
             router.push('/login')
-            cerrarSesion()
-            toast.success("Sesión cerrada")
+            toast.success('Sesión cerrada')
         }
     }
+
 
     React.useEffect(() => {
         const onClick = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false) }
@@ -49,8 +72,8 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
 
     React.useEffect(() => { setOpen(false) }, [pathname])
 
-    const nombre = usuario?.data?.name || 'Usuario'
-    const rol = usuario?.data?.email || 'Invitado'
+    const nombre = usuario?.user?.name || 'Usuario'
+    const rol = usuario?.user?.role?.name || 'Invitado'
     const foto = null
     const iniciales = nombre.split(' ').map(p => p[0]).slice(0, 2).join('').toUpperCase()
 

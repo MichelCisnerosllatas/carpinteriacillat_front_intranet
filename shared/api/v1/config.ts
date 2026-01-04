@@ -14,7 +14,10 @@ export const API_CONFIG = {
             logout: '/intranet/auth/logout/',
             register: '/intranet/auth/register',
             verify: '/UsuarioController.php',
-            forgotpassword: '/auth/users/recovery-user/',
+            forgotpassword: '/auth/users/recovery-userjoin/',
+        },
+        users : {
+            getUsersJoin: '/intranet/user/listjoin',
         }
     }
 } as const;

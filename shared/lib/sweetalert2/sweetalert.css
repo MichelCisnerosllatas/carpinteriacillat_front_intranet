@@ -1,38 +1,114 @@
 /* src/shared/ui/sweetalert.css */
+/* Usa tu token --accent (HSL) y conviértelo a color real */
+:root {
+    --swal-accent: hsl(var(--accent));
+}
 
-:root { --swal-accent: var(--accent, #3b82f6); }
+/* ===========================
+   Caja + tipografía
+   =========================== */
+.swal-app-popup{
+    background: hsl(var(--surface));
+    color: hsl(var(--fg));
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem;
+    box-shadow: 0 20px 70px rgba(0,0,0,.45);
+}
 
-/* caja y textos */
-.swal-app-popup{ background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:1rem; }
-.swal-app-title{ color:var(--text); font-weight:600; }
-.swal-app-html{ color:var(--muted); font-size:.95rem; }
+.swal-app-title{
+    color: hsl(var(--fg));
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
 
-/* botones */
-.swal-app-actions{ gap:.5rem; }
+.swal-app-html{
+    color: hsl(var(--muted-fg));
+    font-size: .95rem;
+    line-height: 1.35rem;
+}
+
+/* ===========================
+   Botones
+   =========================== */
+.swal-app-actions{ gap:.55rem; }
+
 .swal-app-confirm{
-    background:var(--swal-accent); color:#fff; border-radius:.75rem; padding:.55rem .9rem; font-weight:600; border:0;
+    background: var(--swal-accent);
+    color: hsl(var(--accent-fg));
+    border-radius: .85rem;
+    padding: .55rem .95rem;
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+    transition: transform .06s ease, opacity .15s ease, filter .15s ease;
+}
+.swal-app-confirm:hover{ filter: brightness(1.05); }
+.swal-app-confirm:active{ transform: scale(.98); }
+
+.swal-app-cancel{
+    background: transparent;
+    color: hsl(var(--fg));
+    border: 1px solid hsl(var(--border));
+    border-radius: .85rem;
+    padding: .55rem .95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .06s ease, background .15s ease, color .15s ease;
+}
+.swal-app-cancel:hover{
+    background: hsl(var(--surface-2));
+}
+.swal-app-cancel:active{ transform: scale(.98); }
+
+.swal-app-deny{
+    background: hsl(var(--danger));
+    color: hsl(var(--danger-fg));
+    border-radius: .85rem;
+    padding: .55rem .95rem;
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+}
+
+/* ===========================
+   Input
+   =========================== */
+.swal-app-input{
+    background: hsl(var(--bg));
+    color: hsl(var(--fg));
+    border: 1px solid hsl(var(--border));
+    border-radius: .75rem;
+    padding: .55rem .65rem;
+}
+
+/* Focus ring consistente con tu marca */
+.swal-app-confirm:focus-visible,
+.swal-app-cancel:focus-visible,
+.swal-app-deny:focus-visible,
+.swal-app-input:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--swal-accent), transparent 75%);
 }
 .swal-app-cancel{
-    background:transparent; color:var(--text); border:1px solid var(--border); border-radius:.75rem; padding:.55rem .9rem; font-weight:600;
-}
-.swal-app-deny{
-    background:#ef4444; color:#fff; border-radius:.75rem; padding:.55rem .9rem; font-weight:600; border:0;
+    box-shadow: none;
 }
 
-/* inputs */
-.swal-app-input{
-    background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:.5rem; padding:.5rem .6rem;
-}
-.swal-app-confirm:focus,
-.swal-app-cancel:focus,
-.swal-app-deny:focus,
-.swal-app-input:focus{
-    box-shadow:0 0 0 4px color-mix(in oklab, var(--swal-accent), transparent 80%);
-    outline: none;
+
+
+/* ===========================
+   Overlay (fondo)
+   =========================== */
+.swal2-container.swal2-backdrop-show{
+    background: rgba(0,0,0,0.60) !important;
+    backdrop-filter: blur(2px);
 }
 
-/* Fondo más oscuro para el overlay */
-.swal2-container.swal2-backdrop-show {
-    background: rgba(0, 0, 0, 0.6) !important; /* antes 0.4 aprox */
-    backdrop-filter: blur(2px); /* opcional: añade un efecto sutil */
+/* ===========================
+   Validation message
+   =========================== */
+.swal2-validation-message{
+    background: color-mix(in oklab, hsl(var(--danger)), transparent 85%) !important;
+    color: hsl(var(--fg)) !important;
+    border: 1px solid color-mix(in oklab, hsl(var(--danger)), transparent 60%) !important;
+    border-radius: .75rem !important;
 }

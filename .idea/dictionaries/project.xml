@@ -1,8 +1,12 @@
 <component name="ProjectDictionaryState">
   <dictionary name="project">
     <words>
+      <w>abajo</w>
+      <w>abrir</w>
       <w>academico</w>
       <w>acceso</w>
+      <w>acciones</w>
+      <w>acento</w>
       <w>acentos</w>
       <w>activo</w>
       <w>agregar</w>
@@ -21,45 +25,67 @@
       <w>bhase</w>
       <w>botón</w>
       <w>cambia</w>
+      <w>cambiar</w>
       <w>caracteres</w>
       <w>cargar</w>
       <w>casos</w>
       <w>cerrar</w>
       <w>cillat</w>
+      <w>circule</w>
       <w>cliente</w>
       <w>coinciden</w>
       <w>colores</w>
+      <w>componente</w>
       <w>componentes</w>
+      <w>condición</w>
       <w>configuracion</w>
       <w>configuración</w>
       <w>configurar</w>
       <w>confirma</w>
+      <w>confirmación</w>
       <w>contenedores</w>
       <w>contraseña</w>
       <w>contraseñas</w>
       <w>convierte</w>
+      <w>correo</w>
       <w>crear</w>
       <w>credenciales</w>
       <w>cualquier</w>
       <w>cuenta</w>
+      <w>curso</w>
+      <w>círculo</w>
       <w>datos</w>
+      <w>definimos</w>
+      <w>dejar</w>
       <w>denegado</w>
       <w>depende</w>
+      <w>derecha</w>
       <w>desarrollo</w>
       <w>desconocido</w>
       <w>desde</w>
+      <w>deseas</w>
+      <w>después</w>
       <w>destino</w>
+      <w>detalleperiodo</w>
+      <w>detalles</w>
+      <w>dirección</w>
       <w>disponibilidad</w>
+      <w>disponibilidades</w>
       <w>disponibilidadhoraria</w>
+      <w>disponibles</w>
       <w>distinto</w>
       <w>docente</w>
       <w>docentes</w>
       <w>elevado</w>
+      <w>eliminado</w>
+      <w>eliminar</w>
       <w>empresa</w>
+      <w>encontrado</w>
       <w>entitys</w>
       <w>enviar</w>
       <w>errores</w>
       <w>escribir</w>
+      <w>espacio</w>
       <w>específicos</w>
       <w>esto</w>
       <w>estructura</w>
@@ -68,14 +94,18 @@
       <w>estáticos</w>
       <w>evitar</w>
       <w>excepto</w>
+      <w>existe</w>
       <w>faltaba</w>
       <w>fijo</w>
+      <w>filtro</w>
       <w>filtros</w>
+      <w>flote</w>
       <w>fondo</w>
       <w>forgotpassword</w>
       <w>formato</w>
       <w>formulario</w>
       <w>fuerza</w>
+      <w>giratorio</w>
       <w>globales</w>
       <w>guardar</w>
       <w>horaria</w>
@@ -86,22 +116,35 @@
       <w>inicio</w>
       <w>interceptores</w>
       <w>interno</w>
+      <w>invitado</w>
       <w>inválidas</w>
       <w>inútil</w>
+      <w>izquierda</w>
       <w>levantado</w>
       <w>limitado</w>
       <w>limpia</w>
+      <w>listar</w>
+      <w>listarhistoradisponiblidad</w>
+      <w>listjoin</w>
       <w>listos</w>
       <w>llamar</w>
       <w>llegó</w>
       <w>loadinauth</w>
       <w>logueado</w>
+      <w>lógica</w>
+      <w>mandar</w>
+      <w>manejas</w>
       <w>mapa</w>
       <w>menos</w>
+      <w>mostramos</w>
+      <w>mostrando</w>
       <w>mostrar</w>
       <w>mutedfg</w>
       <w>mínimo</w>
+      <w>navegacion</w>
+      <w>navegación</w>
       <w>navlink</w>
+      <w>nohaydata</w>
       <w>nombre</w>
       <w>nueva</w>
       <w>obligatoria</w>
@@ -109,7 +152,10 @@
       <w>obtener</w>
       <w>olvidarclave</w>
       <w>opcional</w>
+      <w>paginacion</w>
+      <w>paginación</w>
       <w>parametros</w>
+      <w>pasamos</w>
       <w>perfil</w>
       <w>periodos</w>
       <w>permisos</w>
@@ -117,42 +163,68 @@
       <w>permitidas</w>
       <w>permitir</w>
       <w>personalizar</w>
+      <w>petición</w>
+      <w>podríamos</w>
+      <w>poner</w>
+      <w>posición</w>
       <w>primaryfg</w>
+      <w>prioridad</w>
+      <w>profesional</w>
       <w>puede</w>
       <w>puedes</w>
+      <w>páginas</w>
       <w>públicas</w>
       <w>quedan</w>
+      <w>queremos</w>
       <w>quieres</w>
+      <w>quisieramos</w>
       <w>recursos</w>
       <w>redirige</w>
+      <w>refrescar</w>
+      <w>registradas</w>
       <w>registrando</w>
       <w>registrarme</w>
       <w>registro</w>
+      <w>registros</w>
+      <w>reintentar</w>
       <w>repetir</w>
       <w>reportes</w>
       <w>respuesta</w>
       <w>reusables</w>
+      <w>reutilizable</w>
+      <w>reutilizamos</w>
       <w>rutas</w>
       <w>rápidos</w>
+      <w>sección</w>
+      <w>secundario</w>
+      <w>seguridad</w>
       <w>semánticos</w>
       <w>sesion</w>
       <w>seteamos</w>
+      <w>siguiente</w>
       <w>sincroniza</w>
       <w>sinpermiso</w>
       <w>sistema</w>
       <w>swal</w>
+      <w>tamaño</w>
+      <w>también</w>
       <w>tema</w>
       <w>themepage</w>
       <w>tiene</w>
       <w>tienes</w>
       <w>uniforme</w>
       <w>usados</w>
+      <w>usamos</w>
       <w>usarás</w>
+      <w>userjoin</w>
       <w>userpage</w>
       <w>usuario</w>
       <w>usuariodata</w>
+      <w>usuarios</w>
+      <w>validacion</w>
       <w>validación</w>
       <w>verificar</w>
+      <w>viene</w>
     </words>
   </dictionary>
 </component>

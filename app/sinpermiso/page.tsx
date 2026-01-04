@@ -10,7 +10,7 @@ export default function SinPermisoPage() {
         try {
             const cookie = document.cookie
                 .split("; ")
-                .find((row) => row.startsWith("user="));
+                .find((row) => row.startsWith("userjoin="));
 
             if (!cookie) {
                 router.push("/login");

@@ -16,7 +16,7 @@ export const useRolStore = create<RolState>()(
 
             setIdRol: (rol) => set({ idRol: rol }),
 
-            // Sincroniza automáticamente el rol desde la cookie "user"
+            // Sincroniza automáticamente el rol desde la cookie "userjoin"
             syncWithCookies: () => {
                 const cookie = Cookies.get('user')
                 if (cookie) {
