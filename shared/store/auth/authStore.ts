@@ -1,23 +1,23 @@
 // Archivo: src/shared/store/authStore.ts
-import {AuthDataEntities, AuthResponseEntities} from "@/entity/auth/authDataEntities";
 import {create} from "zustand/index";
 import {authApi} from "@/features/auth/api/authApi";
-import Swal from 'sweetalert2'
 import { persist } from 'zustand/middleware';
 import Cookies from 'js-cookie';
-import {resetAllStores} from "@/shared/utils/resetAllStore";
 import {toast} from "react-hot-toast";
 import {AuthDataEntitys} from "@/entity/auth/register/RegisterEntity";
+import {getTokenDevicePayload, getTokenDevicePayloadPro} from "@/shared/lib/device/getTokenDevicePayload";
+import {TokenDeviceApi} from "@/features/tokendevice/api/TokenDeviceApi";
 
 type AuthStore = {
     usuario: AuthDataEntitys | null;
+    access_token_id: string;
     loadinauth: boolean;
     estaLogueado: boolean;
     success: boolean | null;
     error: string | null;
 
     iniciarSesion: (email: string, password: string) => Promise<boolean>;
-    cerrarSesion: () => void;
+    cerrarSesion: () => Promise<boolean>;
     verificarSesion: () => Promise<string>;
     reset: () => void;
 }
@@ -30,6 +30,7 @@ export const useAuthStore = create<AuthStore>()(
             estaLogueado: false,
             success: null,
             error: null,
+            access_token_id: "",
 
             iniciarSesion: async (email: string, password: string)  => {
                 try{
@@ -77,22 +78,28 @@ export const useAuthStore = create<AuthStore>()(
                         }
                     );
 
-                    set({
-                        usuario: datosUsuario,
-                        estaLogueado: true,
-                        loadinauth: false,
-                    });
+                    const payload = await getTokenDevicePayloadPro();
+                    const syncRes = await TokenDeviceApi.synchronousApi(payload);
+                    if (syncRes.success){
+                        Cookies.set("access_token_id", String(syncRes.data?.access_token_id) ?? '', {
+                            expires: 7,
+                            secure: process.env.NODE_ENV === "production",
+                            sameSite: "strict",
+                        });
+                        toast.success(`Bienvenido ${datosUsuario?.user?.person?.person_name}`);
 
-                    // Swal.fire({
-                    //     icon: "success",
-                    //     title: "Bienvenido",
-                    //     text: `Hola ${datosUsuario.first_name} ${datosUsuario.last_name}`,
-                    //     timer: 1500,
-                    //     showConfirmButton: false,
-                    // }).then(r => {});
-
-                    toast.success(`Bienvenido ${datosUsuario?.user?.name}`)
-                    return true;
+                        set({
+                            access_token_id: String(syncRes.data?.access_token_id) ?? '',
+                            usuario: datosUsuario,
+                            estaLogueado: true,
+                            loadinauth: false,
+                        });
+                        return true;
+                        // localStorage.setItem('tokendevice_row_id', String(syncRes.data?.device_row_id ?? ''))
+                    }else{
+                        toast.error("Hubo un error al Obtener el Info del dispositivo");
+                        return false;
+                    }
                 }
                 catch (ex: any) {
                     set({
@@ -104,26 +111,36 @@ export const useAuthStore = create<AuthStore>()(
                     return false;
                 }
             },
-            cerrarSesion: () => {
-                localStorage.removeItem('user');
-                Cookies.remove('token');
-                Cookies.remove('user');
-                resetAllStores();
-                set({
-                    usuario: null,
-                    estaLogueado: false,
-                    error: null,
-                });
-
-                // Swal.fire({
-                //     icon: 'info',
-                //     title: 'Sesión cerrada',
-                //     timer: 1000,
-                //     showConfirmButton: false,
-                // }).then(() => {
-                //     window.location.href = '/login'
-                // })
+            cerrarSesion: async (): Promise<boolean> => {
+                try {
+                    await TokenDeviceApi.revokeSyncApi(get().access_token_id);
+                    await authApi.logout();
+                    return true;
+                } catch (e) {
+                    return false;
+                }
             },
+
+            // cerrarSesion: () => {
+            //     localStorage.removeItem('user');
+            //     Cookies.remove('token');
+            //     Cookies.remove('user');
+            //     resetAllStores();
+            //     set({
+            //         usuario: null,
+            //         estaLogueado: false,
+            //         error: null,
+            //     });
+            //
+            //     // Swal.fire({
+            //     //     icon: 'info',
+            //     //     title: 'Sesión cerrada',
+            //     //     timer: 1000,
+            //     //     showConfirmButton: false,
+            //     // }).then(() => {
+            //     //     window.location.href = '/login'
+            //     // })
+            // },
             verificarSesion: async () => {
                 const token = Cookies.get('token');
                 const userData = localStorage.getItem('user');
@@ -170,6 +187,7 @@ export const useAuthStore = create<AuthStore>()(
                 estaLogueado: false,
                 success: null,
                 error: null,
+                access_token_id: ''
             }),
         }),
         {

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import {MoreVertical, Eye, Edit2, Trash2, Download, Settings, SchoolIcon} from "lucide-react";
 import Link from "next/link";
 
-interface PeriodoType {
+type PeriodoType = {
     id: number;
 }
 
@@ -69,7 +69,7 @@ export default function UserTableModalMenu({ periodo }: { periodo: PeriodoType }
             {open && (
                 <div
                     ref={menuRef}
-                    className="fixed z-[9999] w-44 bg-app-2 shadow-xl rounded-md border transition"
+                    className="fixed z-[9999] w-44 bg-surface-2 shadow-xl rounded-md border transition"
                     style={{
                         top: coords.top,
                         left: coords.left,

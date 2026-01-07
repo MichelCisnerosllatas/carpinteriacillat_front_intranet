@@ -45,7 +45,7 @@ export const authApi = {
             fd.append("password", password);
 
             const raw = await clienteAPI.enviarFormData<ApiResponse<AuthDataEntitys>>(
-                API_CONFIG.endpoints.auth.login,
+                API_CONFIG.endpoints.v1.auth.login,
                 fd
             );
 
@@ -76,19 +76,14 @@ export const authApi = {
     // Logout - Cerrar sesión (si tu API lo requiere)
     // ============================================
     logout: async (): Promise<void> => {
-        await clienteAPI.enviarFormulario(
-            API_CONFIG.endpoints.auth.logout,
-            {
-                Accion: 'logout',
-            }
-        );
+        await clienteAPI.enviarFormulario(API_CONFIG.endpoints.v1.auth.logout);
     },
 
     // ============================================
     // Verificar token - Validar sesión actual
     // ============================================
     verificarToken: async (token: string): Promise<AuthDataEntities> => {
-        const resultado = await clienteAPI.enviarFormulario<AuthDataEntities>(API_CONFIG.endpoints.auth.verify, {
+        const resultado = await clienteAPI.enviarFormulario<AuthDataEntities>(API_CONFIG.endpoints.v1.auth.verify, {
             Accion: 'verify',
             token: token,
         });
@@ -115,7 +110,7 @@ export const authApi = {
             fd.append("password_confirmation", payload.password_confirmation);
 
             const raw = await clienteAPI.enviarFormData<ApiResponse<AuthDataEntitys>>(
-                API_CONFIG.endpoints.auth.register,
+                API_CONFIG.endpoints.v1.auth.register,
                 fd
             );
 
@@ -141,7 +136,7 @@ export const authApi = {
     // Recuperar contraseña (opcional)
     // ============================================
     recuperarPassword: async (email: string): Promise<void> => {
-        await clienteAPI.enviarFormulario(API_CONFIG.endpoints.auth.forgotpassword, {
+        await clienteAPI.enviarFormulario(API_CONFIG.endpoints.v1.auth.forgotpassword, {
             Accion: 'recuperar_password',
             Email: email,
         });

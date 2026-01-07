@@ -8,18 +8,27 @@ import {ArrowRight} from "lucide-react";
 import UserTable from "@/features/users/ui/UserTable";
 import {useUserListJoinStore} from "@/shared/store/user/UserListJoinStore";
 import CirculeProgress from "@/widget/intranet/CirculeProgress";
+import {useRouter} from "next/navigation";
 
 export default function UserPageClient(){
-    const {isLoaded,loading, fetch} = useUserListJoinStore();
-    const [openModal, setOpenModal] = useState(false);
-
-    const handleAdd = () => {};
+    const {isLoaded,loading, fetch, fetchSilent} = useUserListJoinStore();
+    const route = useRouter();
 
     useEffect(() => {
         if (!isLoaded) {
             fetch().then();
+        } else {
+            fetchSilent().then(); // background
         }
-    }, [isLoaded, fetch]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
+    // useEffect(() => {
+    //     if (!isLoaded) {
+    //         fetch().then();
+    //     }
+    // }, [isLoaded, fetch]);
 
     const showInitialLoader = !isLoaded && (loading || !isLoaded);
     return(
@@ -28,7 +37,9 @@ export default function UserPageClient(){
                 title="Usuarios"
                 description="Gestión de Usuarios registrados en el sistema"
                 addLabel="Nuevo Usuario"
-                onAdd={handleAdd}
+                onAdd={() =>{
+                    route.push("/user/create");
+                }}
                 filters={
                     <>
                         <AppInput
@@ -58,11 +69,6 @@ export default function UserPageClient(){
                 }
             />
 
-            {showInitialLoader ? (
-                <CirculeProgress />
-            ) : (
-                <UserTable />
-            )}
 
             {/*<AppButton variant="primary" rightIcon={<ArrowRight size={16} />}>*/}
             {/*    Registrarme*/}
@@ -76,6 +82,13 @@ export default function UserPageClient(){
             {/*    Deshabilitado*/}
             {/*</AppButton>*/}
 
+
+
+            {showInitialLoader ? (
+                <CirculeProgress />
+            ) : (
+                <UserTable />
+            )}
 
 
         </>

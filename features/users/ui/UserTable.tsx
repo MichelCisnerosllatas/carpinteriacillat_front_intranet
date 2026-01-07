@@ -55,9 +55,9 @@ export default function UserTable(){
                             <tr key={item.id} className="border-b hover:bg-bg transition">
                                 <td className="py-3 px-4 align-top">{(page - 1) * per_page + index + 1}</td>
                                 <td className="py-3 px-4 align-top hidden">{item.id}</td>
-                                <td className="py-3 px-4 align-top">{item.name}</td>
+                                <td className="py-3 px-4 align-top">{item.person?.person_name} {item.person?.person_lastname}</td>
                                 <td className="py-3 px-4 align-top">{item.email}</td>
-                                <td className="py-3 px-4 flex justify-center items-center gap-2">
+                                <td className="py-3 px-4 flex justify-end items-center gap-2">
                                     <button onClick={() => {}} className="text-muted hover:text-blue-600 transition-colors cursor-pointer" title="Editar / Ver detalles">
                                         <Eye size={18} />
                                     </button>

@@ -5,13 +5,17 @@
       <w>abrir</w>
       <w>academico</w>
       <w>acceso</w>
+      <w>accion</w>
       <w>acciones</w>
       <w>acento</w>
       <w>acentos</w>
       <w>activo</w>
+      <w>actualizado</w>
       <w>agregar</w>
       <w>ahora</w>
       <w>algunos</w>
+      <w>ancha</w>
+      <w>apellidos</w>
       <w>aplica</w>
       <w>aplique</w>
       <w>aquí</w>
@@ -29,12 +33,15 @@
       <w>caracteres</w>
       <w>cargar</w>
       <w>casos</w>
+      <w>cerrando</w>
       <w>cerrar</w>
       <w>cillat</w>
       <w>circule</w>
       <w>cliente</w>
       <w>coinciden</w>
       <w>colores</w>
+      <w>columna</w>
+      <w>columnas</w>
       <w>componente</w>
       <w>componentes</w>
       <w>condición</w>
@@ -44,10 +51,15 @@
       <w>confirma</w>
       <w>confirmación</w>
       <w>contenedores</w>
+      <w>contenido</w>
       <w>contraseña</w>
       <w>contraseñas</w>
       <w>convierte</w>
+      <w>correctamente</w>
       <w>correo</w>
+      <w>crea</w>
+      <w>creada</w>
+      <w>creado</w>
       <w>crear</w>
       <w>credenciales</w>
       <w>cualquier</w>
@@ -66,6 +78,7 @@
       <w>deseas</w>
       <w>después</w>
       <w>destino</w>
+      <w>detalle</w>
       <w>detalleperiodo</w>
       <w>detalles</w>
       <w>dirección</w>
@@ -73,9 +86,13 @@
       <w>disponibilidades</w>
       <w>disponibilidadhoraria</w>
       <w>disponibles</w>
+      <w>dispositivo</w>
       <w>distinto</w>
       <w>docente</w>
       <w>docentes</w>
+      <w>editar</w>
+      <w>ejemplo</w>
+      <w>electrónico</w>
       <w>elevado</w>
       <w>eliminado</w>
       <w>eliminar</w>
@@ -104,13 +121,17 @@
       <w>forgotpassword</w>
       <w>formato</w>
       <w>formulario</w>
+      <w>foto</w>
       <w>fuerza</w>
       <w>giratorio</w>
       <w>globales</w>
       <w>guardar</w>
+      <w>guía</w>
       <w>horaria</w>
       <w>horarioacademico</w>
+      <w>hubo</w>
       <w>idrol</w>
+      <w>información</w>
       <w>inicia</w>
       <w>iniciar</w>
       <w>inicio</w>
@@ -119,21 +140,26 @@
       <w>invitado</w>
       <w>inválidas</w>
       <w>inútil</w>
+      <w>isloading</w>
       <w>izquierda</w>
       <w>levantado</w>
       <w>limitado</w>
       <w>limpia</w>
+      <w>limpiando</w>
+      <w>limpiar</w>
       <w>listar</w>
       <w>listarhistoradisponiblidad</w>
       <w>listjoin</w>
       <w>listos</w>
       <w>llamar</w>
       <w>llegó</w>
+      <w>llena</w>
       <w>loadinauth</w>
       <w>logueado</w>
       <w>lógica</w>
       <w>mandar</w>
       <w>manejas</w>
+      <w>mantenemos</w>
       <w>mapa</w>
       <w>menos</w>
       <w>mostramos</w>
@@ -143,15 +169,21 @@
       <w>mínimo</w>
       <w>navegacion</w>
       <w>navegación</w>
+      <w>navegador</w>
       <w>navlink</w>
       <w>nohaydata</w>
       <w>nombre</w>
+      <w>nombres</w>
       <w>nueva</w>
       <w>obligatoria</w>
       <w>obligatorio</w>
       <w>obtener</w>
+      <w>ocupa</w>
+      <w>ocurrir</w>
       <w>olvidarclave</w>
       <w>opcional</w>
+      <w>ordenar</w>
+      <w>otro</w>
       <w>paginacion</w>
       <w>paginación</w>
       <w>parametros</w>
@@ -159,6 +191,7 @@
       <w>perfil</w>
       <w>periodos</w>
       <w>permisos</w>
+      <w>permite</w>
       <w>permitida</w>
       <w>permitidas</w>
       <w>permitir</w>
@@ -168,6 +201,7 @@
       <w>poner</w>
       <w>posición</w>
       <w>primaryfg</w>
+      <w>primera</w>
       <w>prioridad</w>
       <w>profesional</w>
       <w>puede</w>
@@ -189,7 +223,10 @@
       <w>reintentar</w>
       <w>repetir</w>
       <w>reportes</w>
+      <w>requiere</w>
+      <w>resetear</w>
       <w>respuesta</w>
+      <w>restante</w>
       <w>reusables</w>
       <w>reutilizable</w>
       <w>reutilizamos</w>
@@ -201,6 +238,7 @@
       <w>semánticos</w>
       <w>sesion</w>
       <w>seteamos</w>
+      <w>siempre</w>
       <w>siguiente</w>
       <w>sincroniza</w>
       <w>sinpermiso</w>
@@ -208,14 +246,23 @@
       <w>swal</w>
       <w>tamaño</w>
       <w>también</w>
+      <w>tarjeta</w>
+      <w>telefono</w>
       <w>tema</w>
+      <w>tener</w>
       <w>themepage</w>
       <w>tiene</w>
       <w>tienes</w>
+      <w>tokedevice</w>
+      <w>tokendevice</w>
+      <w>trae</w>
       <w>uniforme</w>
       <w>usados</w>
       <w>usamos</w>
+      <w>usar</w>
       <w>usarás</w>
+      <w>usecreate</w>
+      <w>usercreate</w>
       <w>userjoin</w>
       <w>userpage</w>
       <w>usuario</w>
@@ -225,6 +272,7 @@
       <w>validación</w>
       <w>verificar</w>
       <w>viene</w>
+      <w>vuelve</w>
     </words>
   </dictionary>
 </component>

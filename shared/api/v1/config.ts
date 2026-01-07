@@ -9,15 +9,22 @@ export const API_CONFIG = {
   
     // Endpoints específicos
     endpoints: {
-        auth: {
-            login: '/intranet/auth/login',
-            logout: '/intranet/auth/logout/',
-            register: '/intranet/auth/register',
-            verify: '/UsuarioController.php',
-            forgotpassword: '/auth/users/recovery-userjoin/',
-        },
-        users : {
-            getUsersJoin: '/intranet/user/listjoin',
+        v1: {
+            auth: {
+                login: '/intranet/auth/login',
+                logout: '/intranet/auth/logout/',
+                register: '/intranet/auth/register',
+                verify: '/UsuarioController.php',
+                forgotpassword: '/auth/users/recovery-userjoin/',
+            },
+            tokedevice : {
+                sync: '/intranet/auth/token-device/sync',
+                revoke: '/intranet/auth/token-device/revoke'
+            },
+            users : {
+                getUsersJoin: '/intranet/user/listjoin',
+                create: "/intranet/user"
+            }
         }
     }
 } as const;

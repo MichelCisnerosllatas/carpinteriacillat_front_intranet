@@ -10,6 +10,7 @@ import swal from '@/shared/lib/sweetalert2/sweetalert'
 import { useRouter } from 'next/navigation'
 import Image from "next/image"
 import { toast } from "react-hot-toast"
+import {hardLogout} from "@/shared/lib/auth/hardLogout";
 
 const TITLE: Record<string,string> = {
     '/dashboard':'Dashboard',
@@ -45,20 +46,39 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
             confirmText: 'Sí',
             cancelText: 'No',
             loadingText: 'Cerrando...',
-
             onConfirm: async ({ update }) => {
                 update({ text: 'Cerrando sesión, espera un momento...' })
-
-                await cerrarSesion() // ✅ tu request al backend
+                let ok = false
+                try {
+                    ok = await cerrarSesion() // backend (cuando lo implementes)
+                } finally {
+                    // ✅ SIEMPRE limpia local
+                    hardLogout({ redirect: true, reason: ok ? 'manual' : 'manual_backend_failed' })
+                }
 
                 return true
             },
         })
-
-        if (res.ok) {
-            router.push('/login')
-            toast.success('Sesión cerrada')
-        }
+        // const res = await swal.confirmAsync({
+        //     title: '¿Cerrar sesión?',
+        //     confirmText: 'Sí',
+        //     cancelText: 'No',
+        //     loadingText: 'Cerrando...',
+        //
+        //     onConfirm: async ({ update }) => {
+        //         update({ text: 'Cerrando sesión, espera un momento...' })
+        //
+        //         await cerrarSesion() // ✅ tu request al backend
+        //         hardLogout();
+        //
+        //         return true
+        //     },
+        // })
+        //
+        // if (res.ok) {
+        //     router.push('/login')
+        //     toast.success('Sesión cerrada')
+        // }
     }
 
 
@@ -72,7 +92,7 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
 
     React.useEffect(() => { setOpen(false) }, [pathname])
 
-    const nombre = usuario?.user?.name || 'Usuario'
+    const nombre = usuario?.user?.person?.person_name || 'Usuario'
     const rol = usuario?.user?.role?.name || 'Invitado'
     const foto = null
     const iniciales = nombre.split(' ').map(p => p[0]).slice(0, 2).join('').toUpperCase()

@@ -30,7 +30,7 @@ export async function middleware(req: NextRequest) {
     const userCookie = req.cookies.get("user")?.value;
     const user = userCookie ? JSON.parse(userCookie) : null;
 
-    // console.log("Token en middleware:", token);
+    console.log("Token en middleware:", token);
     // console.log("userCookie en middleware:", userCookie);
     // console.log("userjoin en middleware:", userjoin);
 

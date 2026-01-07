@@ -7,6 +7,7 @@
 import axios, {AxiosInstance, AxiosResponse} from 'axios';
 import Cookies from 'js-cookie';
 import { API_CONFIG } from './config';
+import {hardLogout} from "@/shared/lib/auth/hardLogout";
 
 class ClienteAPI {
     private cliente: AxiosInstance;
@@ -22,39 +23,70 @@ class ClienteAPI {
     }
 
     private configurarInterceptores() {
-        // Request interceptor
         this.cliente.interceptors.request.use(
             (config) => {
-                const token = Cookies.get('token');
-                if (token) {
-                    // config.headers.Authorization = `Bearer ${token}`;
-                    config.headers.Authorization = `Bearer ${token}`;
-                }
-
-                return config;
+                const token = Cookies.get('token')
+                if (token) config.headers.Authorization = `Bearer ${token}`
+                return config
             },
             (error) => Promise.reject(error)
-        );
+        )
 
-        // Response interceptor (mejorado para diferentes formatos)
         this.cliente.interceptors.response.use(
-            (respuesta) => {
-                return respuesta;
-                // return respuesta.data; // devolvemos TODO el cuerpo del backend sin alterar
-            },
+            (respuesta) => respuesta,
             (error) => {
+                // Sin respuesta = red / CORS
                 if (!error.response) {
-                    // Error de red, sin respuesta del servidor
-                    return Promise.reject(
-                        new Error(error.message || "Error de red o CORS.")
-                    );
+                    return Promise.reject(new Error(error.message || 'Error de red o CORS.'))
                 }
 
-                // 👇 Mantenemos el objeto original del error (NO lo convertimos en new Error)
-                return Promise.reject(error);
+                const status = error.response.status
+                const msg = error.response.data?.message
+
+                // ✅ Caso típico Laravel: 401 + "Unauthenticated."
+                if (status === 401) {
+                    hardLogout({ reason: 'token_expired' });
+                }
+
+                return Promise.reject(error)
             }
-        );
+        )
     }
+
+    // private configurarInterceptores() {
+    //     // Request interceptor
+    //     this.cliente.interceptors.request.use(
+    //         (config) => {
+    //             const token = Cookies.get('token');
+    //             if (token) {
+    //                 // config.headers.Authorization = `Bearer ${token}`;
+    //                 config.headers.Authorization = `Bearer ${token}`;
+    //             }
+    //
+    //             return config;
+    //         },
+    //         (error) => Promise.reject(error)
+    //     );
+    //
+    //     // Response interceptor (mejorado para diferentes formatos)
+    //     this.cliente.interceptors.response.use(
+    //         (respuesta) => {
+    //             return respuesta;
+    //             // return respuesta.data; // devolvemos TODO el cuerpo del backend sin alterar
+    //         },
+    //         (error) => {
+    //             if (!error.response) {
+    //                 // Error de red, sin respuesta del servidor
+    //                 return Promise.reject(
+    //                     new Error(error.message || "Error de red o CORS.")
+    //                 );
+    //             }
+    //
+    //             // 👇 Mantenemos el objeto original del error (NO lo convertimos en new Error)
+    //             return Promise.reject(error);
+    //         }
+    //     );
+    // }
 
 
 

@@ -1,5 +1,5 @@
 // //shared/store/user/UserListJoinStore.ts
-import {UserJoinEntity} from "@/entity/userjoin/UserJoinEntity";
+import {UserJoinEntity} from "@/entity/user/userjoin/UserJoinEntity";
 import {create} from "zustand";
 import {UserApi} from "@/features/users/api/UserApi";
 import {LinksEntity} from "@/entity/paginated/LinksEntity";
@@ -23,6 +23,7 @@ type State = {
 
 type Actions = {
     fetch: (params?: { page?: number; per_page?: number; search?: string }) => Promise<void>;
+    fetchSilent: (params?: { page?: number; per_page?: number; search?: string }) => Promise<void>;
     setSearch: (value: string) => void;
     changePage: (page: number) => Promise<void>;
     setPerPage: (per_page: number) => Promise<void>;
@@ -85,6 +86,38 @@ export const useUserListJoinStore = create<State & Actions>((set, get) => ({
             set({ loading: false, loadingPagination: false });
         }
     },
+
+    fetchSilent: async (params) => {
+        const nextPage = params?.page ?? get().page;
+        const nextPerPage = params?.per_page ?? get().per_page;
+        const nextSearch = params?.search ?? get().search;
+
+        try {
+            const res = await UserApi.get_users_join({
+                page: nextPage,
+                per_page: nextPerPage,
+                search: nextSearch,
+            });
+
+            if (res.success) {
+                set({
+                    items: res.data ?? [],
+                    links: res.links,
+                    meta: res.meta,
+                    page: res.meta?.current_page ?? nextPage,
+                    per_page: res.meta?.per_page ?? nextPerPage,
+                    isLoaded: true,
+                });
+            } else {
+                // ✅ IMPORTANTE: en refresh silencioso NO borres items
+                // solo registra error si quieres
+                set({ error: res.message, isLoaded: true });
+            }
+        } catch {
+            // si algo explota, tampoco borres items
+        }
+    },
+
 
     setSearch: (value) => set({ search: value }),
 
