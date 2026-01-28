@@ -30,7 +30,8 @@ export async function middleware(req: NextRequest) {
     const userCookie = req.cookies.get("user")?.value;
     const user = userCookie ? JSON.parse(userCookie) : null;
 
-    console.log("Token en middleware:", token);
+    // console.log("Token en middleware:", token);
+    // console.log("userCookie en middleware:", userCookie);
     // console.log("userCookie en middleware:", userCookie);
     // console.log("userjoin en middleware:", userjoin);
 
@@ -66,7 +67,8 @@ export async function middleware(req: NextRequest) {
 export const config = {
     matcher: [
         // Aplica el middleware a todo excepto rutas públicas y recursos estáticos
-        "/((?!_next/static|_next/image|favicon.ico|img|docs|uploads).*)",
+        "/((?!_next/static|_next/image|favicon.ico|img|docs|uploads|cillat).*)",
+        // "/((?!_next/static|_next/image|favicon.ico|img|docs|uploads).*)",
     ],
 };
 

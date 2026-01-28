@@ -10,23 +10,25 @@ type AppInputProps = {
     readOnly?: boolean;
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
+    containerClassName?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 export function AppInput({
-                             label,
-                             error,
-                             required,
-                             disabled,
-                             readOnly,
-                             leftIcon,
-                             rightIcon,
-                             className,
-                             ...props
-                         }: AppInputProps) {
+     label,
+     error,
+     required,
+     disabled,
+     readOnly,
+     leftIcon,
+     rightIcon,
+     className,
+     containerClassName,
+     ...props
+ }: AppInputProps) {
     const hasError = !!error;
 
     return (
-        <div className="space-y-1">
+        <div className={["space-y-1", containerClassName].join(" ")}>
             {label && (
                 <label className="text-sm font-medium text-fg">
                     {label}
@@ -36,7 +38,7 @@ export function AppInput({
 
             <div
                 className={[
-                    "relative flex items-center gap-2 rounded-xl border px-3 py-2 bg-surface transition",
+                    "relative flex items-center gap-2 rounded-xl border bg-surface transition",
                     // borde normal / error
                     hasError ? "border-danger" : "border-border",
 
@@ -63,7 +65,7 @@ export function AppInput({
                     readOnly={readOnly}
                     aria-invalid={hasError}
                     className={[
-                        "w-full bg-transparent outline-none text-fg placeholder:text-muted-fg",
+                        "w-full bg-transparent outline-none text-fg placeholder:text-muted-fg px-3 py-1.5",
                         // ✅ cursor correcto
                         disabled ? "cursor-not-allowed" : "cursor-text",
                         readOnly ? "cursor-default" : "",

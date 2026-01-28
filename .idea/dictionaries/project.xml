@@ -11,6 +11,7 @@
       <w>acentos</w>
       <w>activo</w>
       <w>actualizado</w>
+      <w>actualizar</w>
       <w>agregar</w>
       <w>ahora</w>
       <w>algunos</w>
@@ -31,6 +32,7 @@
       <w>cambia</w>
       <w>cambiar</w>
       <w>caracteres</w>
+      <w>cargando</w>
       <w>cargar</w>
       <w>casos</w>
       <w>cerrando</w>
@@ -38,6 +40,7 @@
       <w>cillat</w>
       <w>circule</w>
       <w>cliente</w>
+      <w>codigo</w>
       <w>coinciden</w>
       <w>colores</w>
       <w>columna</w>
@@ -90,6 +93,7 @@
       <w>distinto</w>
       <w>docente</w>
       <w>docentes</w>
+      <w>editando</w>
       <w>editar</w>
       <w>ejemplo</w>
       <w>electrónico</w>
@@ -100,6 +104,7 @@
       <w>encontrado</w>
       <w>entitys</w>
       <w>enviar</w>
+      <w>erroes</w>
       <w>errores</w>
       <w>escribir</w>
       <w>espacio</w>
@@ -108,6 +113,7 @@
       <w>estructura</w>
       <w>estudiante</w>
       <w>estándar</w>
+      <w>estás</w>
       <w>estáticos</w>
       <w>evitar</w>
       <w>excepto</w>
@@ -121,6 +127,7 @@
       <w>forgotpassword</w>
       <w>formato</w>
       <w>formulario</w>
+      <w>formvalue</w>
       <w>foto</w>
       <w>fuerza</w>
       <w>giratorio</w>
@@ -131,14 +138,18 @@
       <w>horarioacademico</w>
       <w>hubo</w>
       <w>idrol</w>
+      <w>iduser</w>
+      <w>informacion</w>
       <w>información</w>
       <w>inicia</w>
+      <w>iniciando</w>
       <w>iniciar</w>
       <w>inicio</w>
       <w>interceptores</w>
       <w>interno</w>
       <w>invitado</w>
       <w>inválidas</w>
+      <w>inválido</w>
       <w>inútil</w>
       <w>isloading</w>
       <w>izquierda</w>
@@ -147,6 +158,7 @@
       <w>limpia</w>
       <w>limpiando</w>
       <w>limpiar</w>
+      <w>limpiarndo</w>
       <w>listar</w>
       <w>listarhistoradisponiblidad</w>
       <w>listjoin</w>
@@ -160,6 +172,7 @@
       <w>mandar</w>
       <w>manejas</w>
       <w>mantenemos</w>
+      <w>mantuser</w>
       <w>mapa</w>
       <w>menos</w>
       <w>mostramos</w>
@@ -200,9 +213,12 @@
       <w>podríamos</w>
       <w>poner</w>
       <w>posición</w>
+      <w>pregunta</w>
+      <w>preparando</w>
       <w>primaryfg</w>
       <w>primera</w>
       <w>prioridad</w>
+      <w>proceso</w>
       <w>profesional</w>
       <w>puede</w>
       <w>puedes</w>
@@ -235,6 +251,7 @@
       <w>sección</w>
       <w>secundario</w>
       <w>seguridad</w>
+      <w>seguro</w>
       <w>semánticos</w>
       <w>sesion</w>
       <w>seteamos</w>

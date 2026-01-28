@@ -1,4 +1,4 @@
-// // app/(intranet)/layout.tsx (SERVER: sin 'use client')
+// // app/(intranet)/layout.tsx
 import './intranet.css'
 import { cookies } from 'next/headers'
 import IntranetShell from './intranet-shell'

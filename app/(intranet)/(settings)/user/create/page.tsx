@@ -12,7 +12,7 @@ export default function page() {
     ];
 
     return (
-        <div className="min-h-screen bg-bg flex flex-col">
+        <div className="bg-bg flex flex-col">
             <HeaderNavegacion
                 title="Crear Usuario"
                 description="Complete la información requerida para registrar un nuevo colaborador en la plataforma. Los campos marcados son obligatorios."

@@ -20,18 +20,19 @@ export default function SplashPage() {
   }, [verificarSesion, router])
 
   return (
-      <div className="h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+      <div className="h-screen flex flex-col items-center justify-center bg-bg">
         {/* Logo o imagen */}
         <Image
-            src="/vercel.svg"
+            src="/cillat/logo.png"
             alt="Logo"
-            width={96} // equivalente a w-24
-            height={96} // equivalente a h-24
+            width={106} // equivalente a w-24
+            height={26} // equivalente a h-24
             className="mb-6 animate-bounce"
             priority
         />
 
         {/* Mensaje de carga */}
+        <h1 className="text-2xl font-bold mb-4 text-foreground">Carpintería Cillat</h1>
         <div className="animate-pulse text-xl font-semibold">
           {loading ? 'Cargando...' : 'Redirigiendo...'}
         </div>

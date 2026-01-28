@@ -1,7 +1,7 @@
 //store/auth/useRegisterStore.ts
 import { create } from "zustand";
 import Cookies from "js-cookie";
-import { authApi } from "@/features/auth/api/authApi";
+import { authApi } from "@/features/auth/api/v1/authApi";
 import { ApiResponse } from "@/shared/types/api";
 import {AuthDataEntitys, UserdataEntitys} from "@/entity/auth/register/RegisterEntity";
 import {toast} from "react-hot-toast";

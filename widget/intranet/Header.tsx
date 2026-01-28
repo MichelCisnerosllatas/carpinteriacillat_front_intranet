@@ -93,7 +93,7 @@ export default function Header({ onOpenMobile }: { onOpenMobile: () => void }) {
     React.useEffect(() => { setOpen(false) }, [pathname])
 
     const nombre = usuario?.user?.person?.person_name || 'Usuario'
-    const rol = usuario?.user?.role?.name || 'Invitado'
+    const rol = usuario?.user?.role?.role_name || 'Invitado'
     const foto = null
     const iniciales = nombre.split(' ').map(p => p[0]).slice(0, 2).join('').toUpperCase()
 

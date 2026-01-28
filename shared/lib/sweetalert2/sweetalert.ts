@@ -151,17 +151,23 @@ export function swalLoading(options?: {
             title,
             text,
             allowOutsideClick,
-            didOpen: () => Swal.showLoading(),
+            didOpen: () => {
+                Swal.showLoading()
+            },
             showConfirmButton: false,
             showCancelButton: false,
         })
     )
 
     return {
-        update: (newOpts: { title?: string; text?: string; html?: string }) => Swal.update(newOpts),
+        update: (newOpts: { title?: string; text?: string; html?: string }) => {
+            Swal.update(newOpts)
+            Swal.showLoading() // 🔥 CLAVE
+        },
         close: () => Swal.close(),
     }
 }
+
 
 /* ========= NUEVO: CONFIRM ASYNC (SI = LOADING, NO CIERRA, UPDATE DINÁMICO) ========= */
 
@@ -269,10 +275,156 @@ export async function swalConfirmAsync<T = unknown>(options: {
     return { ok: true, data: res.value as T }
 }
 
+
+const buttons = {
+    hideAll() {
+        Swal.update({
+            showConfirmButton: false,
+            showCancelButton: false,
+        })
+    },
+    showAll() {
+        Swal.update({
+            showConfirmButton: true,
+            showCancelButton: true,
+        })
+    },
+    hideConfirm() {
+        Swal.update({ showConfirmButton: false })
+    },
+    showConfirm(text?: string) {
+        Swal.update({
+            showConfirmButton: true,
+            ...(text ? { confirmButtonText: text } : {}),
+        })
+    },
+    hideCancel() {
+        Swal.update({ showCancelButton: false })
+    },
+    showCancel(text?: string) {
+        Swal.update({
+            showCancelButton: true,
+            ...(text ? { cancelButtonText: text } : {}),
+        })
+    },
+}
+
+export async function swalConfirmFlow<T = unknown>(options: {
+    title?: string
+    text?: string
+    html?: string
+    icon?: SweetAlertIcon | null
+    confirmText?: string
+    cancelText?: string
+    loadingText?: string
+
+    onConfirm: (ctx: {
+        update: (p: {
+            title?: string | null
+            text?: string | null
+            html?: string | null
+            icon?: SweetAlertIcon | null
+        }) => void
+        close: () => void
+        setConfirmText: (t: string) => void
+        buttons: typeof buttons
+    }) => Promise<T>
+} & SweetAlertOptions): Promise<
+    | { ok: true; data: T }
+    | { ok: false; cancelled: true }
+    | { ok: false; error: any }
+> {
+    const {
+        title,
+        text,
+        html,
+        icon,
+        confirmText = 'Sí',
+        cancelText = 'Cancelar',
+        loadingText = 'Procesando...',
+        onConfirm,
+        ...rest
+    } = options
+
+    const setLoading = (loading: boolean) => {
+        if (loading) {
+            Swal.showLoading()
+            buttons.hideAll()
+        } else {
+            Swal.hideLoading()
+        }
+    }
+
+
+    const update = (p: {
+        title?: string | null
+        text?: string | null
+        html?: string | null
+        icon?: SweetAlertIcon | null
+    }) => {
+        Swal.update({
+            ...(p.icon !== undefined ? { icon: p.icon || undefined } : {}),
+            ...(p.title !== undefined ? { title: p.title || '' } : {}),
+            ...(p.html !== undefined
+                ? { html: p.html || '' }
+                : p.text !== undefined
+                    ? { text: p.text || '' }
+                    : {}),
+        })
+    }
+
+    const setConfirmText = (t: string) => {
+        const btn = Swal.getConfirmButton()
+        if (btn) btn.textContent = t
+    }
+
+    const res = await Swal.fire(
+        themed({
+            ...(icon !== undefined ? { icon: icon || undefined } : {}),
+            ...(html ? { html } : text ? { text } : {}),
+            ...(title ? { title } : {}),
+            showCancelButton: true,
+            confirmButtonText: confirmText,
+            cancelButtonText: cancelText,
+            reverseButtons: true,
+
+            preConfirm: async () => {
+                try {
+                    setLoading(true)
+
+                    const data = await onConfirm({
+                        update,
+                        close: Swal.close,
+                        setConfirmText,
+                        buttons,
+                    })
+
+                    return data
+                } catch (err: any) {
+                    Swal.hideLoading()
+                    buttons.showAll()
+                    Swal.showValidationMessage(err?.message ?? 'Ocurrió un error')
+                    return undefined
+                } finally {
+                    setLoading(false)
+                }
+            },
+            allowOutsideClick: () => !Swal.isLoading(),
+            ...rest,
+        })
+    )
+
+    if (res.isDismissed) return { ok: false, cancelled: true }
+    if (res.value === undefined) return { ok: false, error: 'Validation failed' }
+    return { ok: true, data: res.value as T }
+}
+
+
 export default {
     alert: swalAlert,
     confirm: swalConfirm,
     confirmAsync: swalConfirmAsync,
+    confirmFlow: swalConfirmFlow,
     success: swalSuccess,
     error: swalError,
     toast: swalToast,

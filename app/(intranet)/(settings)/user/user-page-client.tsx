@@ -13,16 +13,28 @@ import {useRouter} from "next/navigation";
 export default function UserPageClient(){
     const {isLoaded,loading, fetch, fetchSilent} = useUserListJoinStore();
     const route = useRouter();
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         if (!isLoaded) {
             fetch().then();
         } else {
-            fetchSilent().then(); // background
+            fetchSilent().then(); // carga en background, el usuario no lo sabe
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    //codigo para el debounce del Input de busqueda
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            fetchSilent({
+                page: 1,
+                search,
+            }).then();
+        }, 500); // ⏱️ espera 500ms
+
+        return () => clearTimeout(timeout);
+    }, [search]);
 
     // useEffect(() => {
     //     if (!isLoaded) {
@@ -43,11 +55,8 @@ export default function UserPageClient(){
                 filters={
                     <>
                         <AppInput
-                            onChange={async (e) => {
-                                await fetch({
-                                    search: e.target.value
-                                });
-                            }}
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                             type="text"
                             placeholder="Buscar..."
                         />

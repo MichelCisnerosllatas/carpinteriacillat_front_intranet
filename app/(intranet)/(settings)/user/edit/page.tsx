@@ -1,6 +1,5 @@
 //app/(intranet)/(settings)/user/edit/page.tsx
 "use client";
-// app/(intranet)/(settings)/user/edit/page.tsx
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { HeaderNavegacion } from "@/widget/intranet/HeaderNavegacion";
@@ -16,7 +15,7 @@ export default function Page() {
     ];
 
     return (
-        <div className="min-h-screen bg-bg flex flex-col">
+        <div className="bg-bg flex flex-col">
             <HeaderNavegacion
                 title="Editar Usuario"
                 description="Edita la información del colaborador."

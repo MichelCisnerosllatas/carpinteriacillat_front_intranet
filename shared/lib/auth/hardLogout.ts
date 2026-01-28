@@ -10,10 +10,10 @@ export function hardLogout(options?: { redirect?: boolean; reason?: string }) {
 
     try {
         // 1) storage
-        if (typeof window !== 'undefined') {
-            localStorage.clear()
-            sessionStorage.clear()
-        }
+        // if (typeof window !== 'undefined') {
+        //     localStorage.clear()
+        //     sessionStorage.clear()
+        // }
 
         // 2) cookies (Limpiar cookies)
         Object.keys(Cookies.get()).forEach(cookieName => {

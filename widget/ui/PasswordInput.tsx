@@ -35,7 +35,7 @@ export function PasswordInput({
                     aria-disabled={blocked}
                     aria-label={show ? "Ocultar contraseña" : "Mostrar contraseña"}
                     className={[
-                        "grid place-items-center rounded-lg p-1 text-muted-fg",
+                        "grid place-items-center rounded-lg pr-2 text-muted-fg",
                         blocked
                             ? "cursor-not-allowed opacity-60"
                             : "hover:bg-surface-2 cursor-pointer",

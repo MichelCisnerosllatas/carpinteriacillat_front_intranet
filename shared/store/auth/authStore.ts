@@ -1,6 +1,6 @@
 // Archivo: src/shared/store/authStore.ts
 import {create} from "zustand/index";
-import {authApi} from "@/features/auth/api/authApi";
+import {authApi} from "@/features/auth/api/v1/authApi";
 import { persist } from 'zustand/middleware';
 import Cookies from 'js-cookie';
 import {toast} from "react-hot-toast";

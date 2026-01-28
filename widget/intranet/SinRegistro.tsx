@@ -21,7 +21,7 @@ export default function SinRegistro({
     loading = false,
 }: EmptyStateProps) {
     return (
-        <div className="w-full h-[calc(100vh-180px)] flex flex-col items-center justify-center py-16 text-center">
+        <div className="w-full h-[calc(100vh-190px)] flex flex-col items-center justify-center py-16 text-center">
             <Image
                 src={imageSrc}
                 alt="Empty State"

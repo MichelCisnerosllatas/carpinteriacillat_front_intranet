@@ -56,7 +56,8 @@ export const UserApi = {
     create_user: async (params: userCreateUserType): Promise<ApiResponse<UserCreateDataResponseEntity>> => {
         try {
             const fd = new FormData();
-            fd.append("name", params.name);
+            fd.append("person_name", params.person_name);
+            fd.append("person_lastname", params.person_lastname);
             fd.append("email", params.email);
             fd.append("password", params.password);
             fd.append("role_id", params.role_id);
